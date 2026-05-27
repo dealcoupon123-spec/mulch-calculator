@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mulch Calculator by Yard — How Much Mulch Do I Need? (Free Tool)</title>
+<meta name="description" content="Free mulch calculator. Enter your garden area and depth to instantly get cubic yards, cubic feet, and number of bags needed. Works for regular, rubber, and stone mulch.">
+<meta name="keywords" content="mulch calculator, mulch calculator by yard, how much mulch do i need, rubber mulch calculator, mulch cover calculator">
+<link rel="canonical" href="https://yardcalculator.com/mulch-calculator">
+<meta property="og:title" content="Mulch Calculator — How Much Mulch Do I Need?">
+<meta property="og:description" content="Free mulch calculator. Get exact cubic yards and bags needed for your garden beds instantly.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="robots" content="index, follow">
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"Mulch Calculator by Yard",
+  "url":"https://yardcalculator.com/mulch-calculator",
+  "description":"Calculate how much mulch you need by entering garden area and desired depth",
+  "applicationCategory":"UtilityApplication",
+  "operatingSystem":"Any",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {
+      "@type":"Question",
+      "name":"How many bags of mulch do I need for 100 square feet?",
+      "acceptedAnswer":{"@type":"Answer","text":"For 100 square feet at a 3-inch depth, you need about 0.93 cubic yards or approximately 14 bags of 2-cubic-foot mulch. Use our calculator above for exact numbers based on your area."}
+    },
+    {
+      "@type":"Question",
+      "name":"How deep should mulch be in a garden bed?",
+      "acceptedAnswer":{"@type":"Answer","text":"Most garden beds need 2 to 3 inches of mulch. At 2 inches, mulch retains moisture and suppresses light weeds. At 3 inches it blocks most weeds. Never exceed 4 inches — too much mulch suffocates plant roots."}
+    },
+    {
+      "@type":"Question",
+      "name":"How much does 1 cubic yard of mulch cover?",
+      "acceptedAnswer":{"@type":"Answer","text":"One cubic yard covers about 162 square feet at 2 inches deep, 108 square feet at 3 inches deep, and 81 square feet at 4 inches deep."}
+    },
+    {
+      "@type":"Question",
+      "name":"How many bags of mulch are in a cubic yard?",
+      "acceptedAnswer":{"@type":"Answer","text":"One cubic yard equals 27 cubic feet. A standard 2-cubic-foot bag means you need about 13.5 bags per cubic yard. A 3-cubic-foot bag means about 9 bags per cubic yard."}
+    },
+    {
+      "@type":"Question",
+      "name":"Is rubber mulch better than regular mulch?",
+      "acceptedAnswer":{"@type":"Answer","text":"Rubber mulch lasts much longer (10+ years vs 1-2 years) and is great for playgrounds or high-traffic areas. However, it does not add nutrients to soil like organic mulch does. Choose rubber mulch for durability, organic mulch for garden beds."}
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --green-900: #1a2e1a;
+    --green-800: #243824;
+    --green-700: #2d4a2d;
+    --green-600: #3a5c3a;
+    --green-500: #4a7c4a;
+    --green-400: #6a9e6a;
+    --green-300: #8fbe8f;
+    --green-200: #c2dcc2;
+    --green-100: #e6f2e6;
+    --green-50:  #f4faf4;
+    --cream:     #faf8f3;
+    --cream-dark:#f0ece0;
+    --brown-400: #8b6f47;
+    --brown-200: #d4b896;
+    --text-dark:  #1c2b1c;
+    --text-mid:   #4a5e4a;
+    --text-light: #7a927a;
+    --white:      #ffffff;
+    --radius-sm:  6px;
+    --radius-md:  12px;
+    --radius-lg:  20px;
+    --shadow-sm:  0 1px 4px rgba(26,46,26,.08);
+    --shadow-md:  0 4px 20px rgba(26,46,26,.12);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--green-900);
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-logo {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    color: var(--green-200);
+    text-decoration: none;
+    letter-spacing: -.3px;
+  }
+  .nav-logo span { color: var(--green-400); }
+  nav ul { list-style: none; display: flex; gap: 28px; }
+  nav ul a { color: var(--green-300); text-decoration: none; font-size: 13px; font-weight: 400; transition: color .2s; }
+  nav ul a:hover { color: var(--white); }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--green-900);
+    padding: 56px 24px 72px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(74,124,74,.25) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-block;
+    background: rgba(142,190,142,.15);
+    border: 1px solid rgba(142,190,142,.3);
+    color: var(--green-300);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 16px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--green-300);
+  }
+  .hero-sub {
+    color: var(--green-200);
+    font-size: 17px;
+    font-weight: 300;
+    max-width: 520px;
+    margin: 0 auto 12px;
+  }
+  .hero-badges {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  .hero-badge {
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.15);
+    color: var(--green-200);
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 100px;
+  }
+
+  /* ── CALCULATOR CARD ── */
+  .calc-wrapper {
+    max-width: 780px;
+    margin: -40px auto 0;
+    padding: 0 20px;
+    position: relative;
+    z-index: 10;
+  }
+  .calc-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+  }
+  .calc-header {
+    background: var(--green-800);
+    padding: 20px 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .calc-header-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--green-600);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+  .calc-header h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--white);
+  }
+  .calc-header p {
+    font-size: 12px;
+    color: var(--green-300);
+    margin-top: 2px;
+  }
+  .calc-body { padding: 28px; }
+
+  /* Unit toggle */
+  .unit-toggle {
+    display: inline-flex;
+    background: var(--green-50);
+    border: 1px solid var(--green-200);
+    border-radius: 100px;
+    padding: 3px;
+    margin-bottom: 24px;
+  }
+  .unit-btn {
+    padding: 6px 18px;
+    border: none;
+    background: transparent;
+    border-radius: 100px;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text-mid);
+    cursor: pointer;
+    transition: all .2s;
+    font-weight: 400;
+  }
+  .unit-btn.active {
+    background: var(--green-700);
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  /* Form grid */
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  @media (max-width: 560px) { .form-grid { grid-template-columns: 1fr; } }
+
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-mid);
+  }
+  .field-note { font-size: 11px; color: var(--text-light); }
+  .input-wrap { position: relative; }
+  .input-wrap input, .input-wrap select {
+    width: 100%;
+    padding: 11px 44px 11px 14px;
+    border: 1.5px solid var(--green-200);
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text-dark);
+    background: var(--cream);
+    outline: none;
+    transition: border-color .2s, box-shadow .2s;
+    appearance: none;
+  }
+  .input-wrap select { padding-right: 36px; cursor: pointer; }
+  .input-wrap input:focus, .input-wrap select:focus {
+    border-color: var(--green-500);
+    box-shadow: 0 0 0 3px rgba(74,124,74,.12);
+    background: var(--white);
+  }
+  .input-unit {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    color: var(--text-light);
+    pointer-events: none;
+  }
+
+  .full-width { grid-column: 1 / -1; }
+
+  /* Material selector */
+  .material-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  @media (max-width: 460px) { .material-grid { grid-template-columns: 1fr; } }
+  .mat-btn {
+    border: 1.5px solid var(--green-200);
+    border-radius: var(--radius-md);
+    padding: 12px 10px;
+    text-align: center;
+    cursor: pointer;
+    background: var(--cream);
+    transition: all .2s;
+  }
+  .mat-btn.active {
+    border-color: var(--green-600);
+    background: var(--green-50);
+    box-shadow: 0 0 0 3px rgba(74,124,74,.1);
+  }
+  .mat-icon { font-size: 22px; display: block; margin-bottom: 4px; }
+  .mat-name { font-size: 12px; font-weight: 500; color: var(--text-dark); }
+  .mat-desc { font-size: 11px; color: var(--text-light); margin-top: 1px; }
+
+  /* Calc button */
+  .calc-btn {
+    width: 100%;
+    padding: 14px;
+    background: var(--green-600);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background .2s, transform .1s;
+    letter-spacing: .01em;
+  }
+  .calc-btn:hover { background: var(--green-700); }
+  .calc-btn:active { transform: scale(.99); }
+
+  /* Results */
+  .results {
+    margin-top: 20px;
+    background: var(--green-50);
+    border: 1.5px solid var(--green-200);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    display: none;
+    animation: fadeUp .35s ease;
+  }
+  .results.show { display: block; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .results-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-mid);
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+  }
+  .results-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  @media (max-width: 460px) { .results-grid { grid-template-columns: 1fr 1fr; } }
+  .result-box {
+    background: var(--white);
+    border-radius: var(--radius-sm);
+    padding: 14px 12px;
+    text-align: center;
+    border: 1px solid var(--green-200);
+  }
+  .result-box.highlight {
+    background: var(--green-700);
+    border-color: var(--green-700);
+  }
+  .result-val {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--green-700);
+    line-height: 1;
+    display: block;
+  }
+  .result-box.highlight .result-val { color: var(--white); }
+  .result-lbl {
+    font-size: 11px;
+    color: var(--text-light);
+    margin-top: 5px;
+    display: block;
+  }
+  .result-box.highlight .result-lbl { color: var(--green-200); }
+  .results-tip {
+    font-size: 13px;
+    color: var(--text-mid);
+    background: rgba(74,124,74,.08);
+    border-left: 3px solid var(--green-400);
+    padding: 10px 14px;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    line-height: 1.5;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .main-wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 60px 20px;
+  }
+
+  /* Quick reference table */
+  .quick-ref {
+    background: var(--white);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--green-200);
+    overflow: hidden;
+    margin: 0 0 48px;
+  }
+  .quick-ref-header {
+    background: var(--green-100);
+    padding: 14px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--green-800);
+  }
+  .quick-ref table { width: 100%; border-collapse: collapse; }
+  .quick-ref th {
+    background: var(--cream);
+    padding: 10px 16px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-mid);
+    text-align: left;
+    border-bottom: 1px solid var(--green-100);
+  }
+  .quick-ref td {
+    padding: 10px 16px;
+    font-size: 13px;
+    color: var(--text-dark);
+    border-bottom: 1px solid var(--green-100);
+  }
+  .quick-ref tr:last-child td { border-bottom: none; }
+  .quick-ref tr:nth-child(even) td { background: var(--green-50); }
+
+  /* Article */
+  .article h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(22px,3.5vw,30px);
+    font-weight: 600;
+    color: var(--green-900);
+    line-height: 1.2;
+    margin: 44px 0 14px;
+  }
+  .article h2:first-child { margin-top: 0; }
+  .article h3 {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--green-800);
+    margin: 28px 0 10px;
+  }
+  .article p {
+    color: var(--text-mid);
+    margin-bottom: 16px;
+    font-size: 16px;
+    line-height: 1.8;
+  }
+  .article ul, .article ol {
+    padding-left: 20px;
+    margin-bottom: 16px;
+  }
+  .article li {
+    color: var(--text-mid);
+    margin-bottom: 8px;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* Callout box */
+  .callout {
+    background: var(--green-50);
+    border: 1px solid var(--green-200);
+    border-left: 4px solid var(--green-500);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 16px 20px;
+    margin: 24px 0;
+  }
+  .callout strong { color: var(--green-800); }
+  .callout p { color: var(--text-mid); font-size: 14px; margin: 0; }
+
+  /* Depth guide cards */
+  .depth-cards {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 12px;
+    margin: 20px 0;
+  }
+  @media (max-width: 500px) { .depth-cards { grid-template-columns: 1fr; } }
+  .depth-card {
+    border: 1px solid var(--green-200);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    background: var(--white);
+    text-align: center;
+  }
+  .depth-card .d-inches {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--green-600);
+  }
+  .depth-card .d-label { font-size: 12px; font-weight: 500; color: var(--text-mid); margin: 4px 0; }
+  .depth-card .d-desc { font-size: 12px; color: var(--text-light); line-height: 1.5; }
+
+  /* ── FAQ ── */
+  .faq { margin: 48px 0 0; }
+  .faq h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--green-900);
+    margin-bottom: 24px;
+  }
+  .faq-item {
+    border-bottom: 1px solid var(--green-200);
+  }
+  .faq-q {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 16px 0;
+    text-align: left;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-dark);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.5;
+  }
+  .faq-q:hover { color: var(--green-700); }
+  .faq-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--green-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 14px;
+    color: var(--green-600);
+    transition: transform .25s, background .2s;
+  }
+  .faq-item.open .faq-icon { transform: rotate(45deg); background: var(--green-600); color: var(--white); }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .3s ease, padding .3s;
+  }
+  .faq-item.open .faq-a { max-height: 300px; padding-bottom: 16px; }
+  .faq-a p { font-size: 14px; color: var(--text-mid); line-height: 1.7; margin: 0; }
+
+  /* ── RELATED TOOLS ── */
+  .related {
+    background: var(--green-900);
+    padding: 48px 20px;
+    text-align: center;
+  }
+  .related h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .related p { color: var(--green-300); font-size: 14px; margin-bottom: 28px; }
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
+    gap: 12px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .rel-card {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: var(--radius-md);
+    padding: 20px 14px;
+    text-decoration: none;
+    transition: background .2s, border-color .2s;
+    cursor: pointer;
+  }
+  .rel-card:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.25); }
+  .rel-icon { font-size: 24px; display: block; margin-bottom: 8px; }
+  .rel-name { font-size: 13px; font-weight: 500; color: var(--white); display: block; }
+  .rel-sub { font-size: 11px; color: var(--green-400); display: block; margin-top: 3px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--green-900);
+    border-top: 1px solid rgba(255,255,255,.08);
+    padding: 24px 20px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--green-400);
+  }
+  footer a { color: var(--green-300); text-decoration: none; }
+  footer a:hover { color: var(--white); }
+  .footer-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 12px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .hero { padding: 40px 16px 64px; }
+    nav ul { display: none; }
+    .calc-body { padding: 20px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">Yard<span>Calculator</span></a>
+  <ul>
+    <li><a href="#calculator">Calculator</a></li>
+    <li><a href="#guide">Guide</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Free Online Tool</div>
+  <h1>Mulch Calculator <em>by Yard</em></h1>
+  <p class="hero-sub">Get the exact amount of mulch you need — in cubic yards, cubic feet, and bags. No guessing, no waste.</p>
+  <div class="hero-badges">
+    <span class="hero-badge">✓ Works for any shape</span>
+    <span class="hero-badge">✓ Regular, rubber &amp; stone</span>
+    <span class="hero-badge">✓ Instant results</span>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<div class="calc-wrapper" id="calculator">
+  <div class="calc-card">
+    <div class="calc-header">
+      <div class="calc-header-icon">🌿</div>
+      <div>
+        <h2>Mulch Calculator</h2>
+        <p>Enter your measurements below</p>
+      </div>
+    </div>
+    <div class="calc-body">
+
+      <!-- Unit toggle -->
+      <div>
+        <div class="unit-toggle" id="unitToggle">
+          <button class="unit-btn active" onclick="setUnit('ft')">Square Feet</button>
+          <button class="unit-btn" onclick="setUnit('yd')">Square Yards</button>
+        </div>
+      </div>
+
+      <!-- Material selector -->
+      <p style="font-size:13px;font-weight:500;color:var(--text-mid);margin-bottom:10px;">Select mulch type:</p>
+      <div class="material-grid">
+        <div class="mat-btn active" id="mat-organic" onclick="setMaterial('organic')">
+          <span class="mat-icon">🍂</span>
+          <span class="mat-name">Regular Mulch</span>
+          <span class="mat-desc">Wood, bark, compost</span>
+        </div>
+        <div class="mat-btn" id="mat-rubber" onclick="setMaterial('rubber')">
+          <span class="mat-icon">⚫</span>
+          <span class="mat-name">Rubber Mulch</span>
+          <span class="mat-desc">Playground, driveway</span>
+        </div>
+        <div class="mat-btn" id="mat-stone" onclick="setMaterial('stone')">
+          <span class="mat-icon">🪨</span>
+          <span class="mat-name">Stone / Gravel</span>
+          <span class="mat-desc">Decorative rock</span>
+        </div>
+      </div>
+
+      <!-- Inputs -->
+      <div class="form-grid">
+        <div class="field">
+          <label for="length">Length</label>
+          <div class="input-wrap">
+            <input type="number" id="length" placeholder="e.g. 20" min="0" step="0.1">
+            <span class="input-unit" id="lengthUnit">ft</span>
+          </div>
+          <span class="field-note">Length of your garden bed</span>
+        </div>
+        <div class="field">
+          <label for="width">Width</label>
+          <div class="input-wrap">
+            <input type="number" id="width" placeholder="e.g. 10" min="0" step="0.1">
+            <span class="input-unit" id="widthUnit">ft</span>
+          </div>
+          <span class="field-note">Width of your garden bed</span>
+        </div>
+        <div class="field">
+          <label for="depth">Mulch Depth</label>
+          <div class="input-wrap">
+            <input type="number" id="depth" placeholder="e.g. 3" min="0.5" max="12" step="0.5" value="3">
+            <span class="input-unit">in</span>
+          </div>
+          <span class="field-note">Recommended: 2–3 inches</span>
+        </div>
+        <div class="field">
+          <label for="beds">Number of Beds</label>
+          <div class="input-wrap">
+            <input type="number" id="beds" placeholder="e.g. 1" min="1" step="1" value="1">
+            <span class="input-unit">beds</span>
+          </div>
+          <span class="field-note">Multiple same-size beds</span>
+        </div>
+      </div>
+
+      <button class="calc-btn" onclick="calculate()">Calculate How Much Mulch I Need →</button>
+
+      <!-- Results -->
+      <div class="results" id="results">
+        <p class="results-title">Your Results</p>
+        <div class="results-grid">
+          <div class="result-box highlight">
+            <span class="result-val" id="res-yards">—</span>
+            <span class="result-lbl">Cubic Yards</span>
+          </div>
+          <div class="result-box">
+            <span class="result-val" id="res-feet">—</span>
+            <span class="result-lbl">Cubic Feet</span>
+          </div>
+          <div class="result-box">
+            <span class="result-val" id="res-bags2">—</span>
+            <span class="result-lbl">Bags (2 cu ft each)</span>
+          </div>
+          <div class="result-box">
+            <span class="result-val" id="res-bags3">—</span>
+            <span class="result-lbl">Bags (3 cu ft each)</span>
+          </div>
+        </div>
+        <p class="results-tip" id="results-tip">💡 Tip will appear here.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main-wrap">
+
+  <!-- Quick reference -->
+  <div class="quick-ref" style="margin-top:48px;">
+    <div class="quick-ref-header">📊 Quick Reference — How Much Does 1 Cubic Yard Cover?</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Depth</th>
+          <th>Coverage per Cubic Yard</th>
+          <th>Bags Needed (2 cu ft)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1 inch</td><td>324 sq ft</td><td>~14 bags</td></tr>
+        <tr><td>2 inches</td><td>162 sq ft</td><td>~14 bags</td></tr>
+        <tr><td>3 inches</td><td>108 sq ft</td><td>~14 bags</td></tr>
+        <tr><td>4 inches</td><td>81 sq ft</td><td>~14 bags</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Article -->
+  <article class="article" id="guide">
+
+    <h2>How Much Mulch Do You Actually Need?</h2>
+    <p>Most homeowners either buy too much mulch and waste money, or buy too little and have to make a second trip to the store. Our free mulch calculator takes the guesswork out by doing the math for you. Simply enter your garden bed dimensions, choose your preferred depth, and get instant results in cubic yards, cubic feet, and number of bags.</p>
+
+    <p>The formula is straightforward: <strong>Volume (cubic yards) = Length × Width × Depth ÷ 324</strong>. That divides by 324 because there are 324 square feet in a cubic yard at 1 inch deep. But rather than doing the math by hand, just use the calculator above — it handles multiple beds, different unit systems, and all three mulch types.</p>
+
+    <div class="callout">
+      <p><strong>Rule of thumb:</strong> For most garden beds, plan for 3 inches of mulch depth. This suppresses weeds effectively, retains soil moisture, and keeps plant roots at a stable temperature through summer and winter.</p>
+    </div>
+
+    <h2>How Deep Should Mulch Be?</h2>
+    <p>Mulch depth is the most important variable in your calculation. Too shallow and it won't control weeds. Too deep and it can suffocate plant roots and cause fungal problems. Here is what each depth level does:</p>
+
+    <div class="depth-cards">
+      <div class="depth-card">
+        <span class="d-inches">2"</span>
+        <p class="d-label">Light Coverage</p>
+        <p class="d-desc">Good moisture retention. Partial weed control. Best for established perennial beds.</p>
+      </div>
+      <div class="depth-card">
+        <span class="d-inches">3"</span>
+        <p class="d-label">Recommended</p>
+        <p class="d-desc">Excellent weed suppression. Good moisture lock. Safe for most shrubs and perennials.</p>
+      </div>
+      <div class="depth-card">
+        <span class="d-inches">4"</span>
+        <p class="d-label">Maximum</p>
+        <p class="d-desc">Only for new beds or areas with heavy weed pressure. Never pile against plant stems.</p>
+      </div>
+    </div>
+
+    <p>One common mistake is "volcano mulching" — piling mulch up against the base of trees or shrubs. This traps moisture against the bark and leads to rot and disease. Always leave a 2–3 inch gap around stems and tree trunks.</p>
+
+    <h2>Regular Mulch vs Rubber Mulch vs Stone — Which Should You Use?</h2>
+    <p>The mulch type you choose affects not just how much you need, but also cost, longevity, and the health of your plants.</p>
+
+    <h3>Regular (Organic) Mulch</h3>
+    <p>Wood chips, shredded bark, and compost-based mulch are the most popular choices for garden beds. Organic mulch breaks down over 1–2 years, adding nutrients back into the soil. It needs to be replenished annually or every other year, but it actively improves soil health. Great for vegetable gardens, flower beds, and around trees and shrubs.</p>
+
+    <h3>Rubber Mulch</h3>
+    <p>Made from recycled tires, rubber mulch is extremely durable and can last 10 years or more. It does not break down or decompose, which makes it ideal for playgrounds, sports areas, and pathways where you want a permanent solution. The tradeoff: rubber mulch adds no nutrients to soil and can heat up significantly in summer sun. Use the rubber mulch calculator option above for accurate volume calculations — rubber mulch is denser, so weight estimates will differ.</p>
+
+    <h3>Stone and Gravel</h3>
+    <p>Decorative stone mulch — including pea gravel, river rock, and lava rock — is the most permanent option. It never decomposes, never needs replenishment, and looks clean and polished in formal landscapes. However, stone mulch can make soil more alkaline over time, and it does not retain moisture as well as organic mulch. Best used in driveways, pathways, around cacti and succulents, or in low-water landscapes.</p>
+
+    <h2>How to Measure Your Garden Bed Correctly</h2>
+    <p>Getting an accurate area measurement is the key to getting accurate calculator results. Here is how to measure common bed shapes:</p>
+    <ul>
+      <li><strong>Rectangle or square:</strong> Measure length × width. This is the most common shape — just enter both dimensions in the calculator.</li>
+      <li><strong>Circle:</strong> Measure the diameter, divide by 2 to get the radius, then calculate: area = 3.14 × radius². Enter this area as length = radius, width = radius × 3.14 (or just use 0.785 × diameter²).</li>
+      <li><strong>Irregular shapes:</strong> Break the bed into smaller rectangles or squares, calculate each one separately, and add the areas together. Use the "number of beds" field to handle identical beds at once.</li>
+      <li><strong>Around a tree:</strong> Calculate the full circle area (using the outer drip line radius), then subtract the area of the trunk itself.</li>
+    </ul>
+
+    <h2>Tips to Save Money on Mulch</h2>
+    <p>Mulch costs can add up quickly, especially for large properties. Here are some ways to reduce costs without compromising quality:</p>
+    <ul>
+      <li>Buy in bulk cubic yards from a landscaping supplier rather than individual bags from a hardware store — bulk mulch is often 40–60% cheaper per cubic yard.</li>
+      <li>Look for free wood chips from your local tree service or utility company — many give these away for free rather than hauling them to a dump.</li>
+      <li>Apply mulch in spring before weed seeds germinate for maximum weed suppression (so you need less depth to do the same job).</li>
+      <li>Use cardboard or newspaper under mulch as a weed barrier — this lets you use a thinner mulch layer (2 inches instead of 3–4) and still get excellent weed control.</li>
+      <li>Refresh existing mulch by raking it before adding new material — you may only need to add 1 inch on top rather than starting from scratch.</li>
+    </ul>
+
+    <div class="callout">
+      <p><strong>Pro tip:</strong> Always add 10% extra to your calculator result to account for settling, uneven application, and any odd corners you may have underestimated. The calculator gives you the exact amount — buy a little more to be safe.</p>
+    </div>
+
+    <h2>How to Use This Mulch Calculator</h2>
+    <p>Using the mulch calculator above takes less than 30 seconds:</p>
+    <ol>
+      <li>Choose your measurement unit — square feet or square yards.</li>
+      <li>Select your mulch type: regular organic mulch, rubber mulch, or stone and gravel.</li>
+      <li>Enter the length and width of your garden bed.</li>
+      <li>Enter the depth of mulch you want to apply (2–3 inches recommended).</li>
+      <li>If you have multiple identical beds, enter the number of beds.</li>
+      <li>Click Calculate and instantly get your result in cubic yards, cubic feet, and number of bags.</li>
+    </ol>
+    <p>The results show both 2-cubic-foot bag counts and 3-cubic-foot bag counts, so you can compare prices at your local store regardless of bag size.</p>
+
+  </article>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        How many bags of mulch do I need for 100 square feet?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>For 100 square feet at a 3-inch depth, you need about 0.93 cubic yards or approximately 14 bags of 2-cubic-foot mulch (or about 9 bags of 3-cubic-foot mulch). Use the calculator above for exact numbers based on your specific area and depth.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        How deep should mulch be in a garden bed?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>Most garden beds need 2 to 3 inches of mulch. At 2 inches, mulch retains moisture and suppresses light weeds. At 3 inches it blocks most weeds effectively. Never exceed 4 inches deep — too much mulch suffocates plant roots and creates habitat for pests. Keep mulch 2–3 inches away from plant stems and tree trunks.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        How much area does 1 cubic yard of mulch cover?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>One cubic yard of mulch covers about 162 square feet at 2 inches deep, 108 square feet at 3 inches deep, and 81 square feet at 4 inches deep. This is the standard reference point most landscapers use when ordering mulch in bulk.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        How many bags of mulch are in a cubic yard?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>One cubic yard equals 27 cubic feet. A standard 2-cubic-foot bag means you need about 13.5 bags per cubic yard. A 3-cubic-foot bag means about 9 bags per cubic yard. Buying bulk mulch by the yard is almost always cheaper than buying bags — compare prices before ordering.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Is rubber mulch better than regular mulch?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>It depends on where you are using it. Rubber mulch lasts 10+ years and is great for playgrounds, high-traffic paths, and anywhere you want a permanent solution. However, it adds no nutrients to soil and can get hot in summer sun. Organic mulch is better for garden beds where soil health matters. Use rubber mulch for durability, organic mulch for plant health.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        When is the best time to apply mulch?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>Spring is the best time to apply mulch — before weed seeds germinate and before summer heat stresses plant roots. A second application in late fall helps insulate roots from winter cold. Avoid applying mulch when the ground is frozen or when soil is waterlogged.</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- RELATED TOOLS -->
+<section class="related">
+  <h2>More Free Yard Calculators</h2>
+  <p>All the calculators you need for your yard and garden — free, fast, no sign-up required.</p>
+  <div class="related-grid">
+    <a class="rel-card" href="/gravel-calculator">
+      <span class="rel-icon">🪨</span>
+      <span class="rel-name">Gravel Calculator</span>
+      <span class="rel-sub">Cubic yards &amp; tons</span>
+    </a>
+    <a class="rel-card" href="/fence-calculator">
+      <span class="rel-icon">🏡</span>
+      <span class="rel-name">Fence Calculator</span>
+      <span class="rel-sub">Posts, panels, concrete</span>
+    </a>
+    <a class="rel-card" href="/pool-gallon-calculator">
+      <span class="rel-icon">🏊</span>
+      <span class="rel-name">Pool Gallon Calculator</span>
+      <span class="rel-sub">Volume &amp; chemicals</span>
+    </a>
+    <a class="rel-card" href="/soil-calculator">
+      <span class="rel-icon">🌱</span>
+      <span class="rel-name">Soil Calculator</span>
+      <span class="rel-sub">Raised beds &amp; lawns</span>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="/about">About</a>
+    <a href="/privacy">Privacy Policy</a>
+    <a href="/contact">Contact</a>
+    <a href="/sitemap.xml">Sitemap</a>
+  </div>
+  <p>© 2025 YardCalculator.com — Free yard and garden calculators for US homeowners.</p>
+</footer>
+
+<script>
+  let currentUnit = 'ft';
+  let currentMaterial = 'organic';
+
+  function setUnit(u) {
+    currentUnit = u;
+    document.querySelectorAll('.unit-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+    document.getElementById('lengthUnit').textContent = u === 'ft' ? 'ft' : 'yd';
+    document.getElementById('widthUnit').textContent  = u === 'ft' ? 'ft' : 'yd';
+    document.getElementById('results').classList.remove('show');
+  }
+
+  function setMaterial(m) {
+    currentMaterial = m;
+    document.querySelectorAll('.mat-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('mat-' + m).classList.add('active');
+    document.getElementById('results').classList.remove('show');
+  }
+
+  function calculate() {
+    const length = parseFloat(document.getElementById('length').value) || 0;
+    const width  = parseFloat(document.getElementById('width').value)  || 0;
+    const depth  = parseFloat(document.getElementById('depth').value)  || 3;
+    const beds   = parseInt(document.getElementById('beds').value)     || 1;
+
+    if (!length || !width) {
+      alert('Please enter both length and width of your garden bed.');
+      return;
+    }
+
+    let areaSqFt = currentUnit === 'ft'
+      ? length * width * beds
+      : length * 9 * width * 9 * beds / 81;
+
+    if (currentUnit === 'yd') areaSqFt = length * width * 9 * beds;
+
+    const cubicFeet  = areaSqFt * (depth / 12);
+    const cubicYards = cubicFeet / 27;
+    const bags2      = Math.ceil(cubicFeet / 2);
+    const bags3      = Math.ceil(cubicFeet / 3);
+
+    document.getElementById('res-yards').textContent = cubicYards.toFixed(2);
+    document.getElementById('res-feet').textContent  = cubicFeet.toFixed(1);
+    document.getElementById('res-bags2').textContent = bags2;
+    document.getElementById('res-bags3').textContent = bags3;
+
+    const tips = {
+      organic: `For ${depth}" of organic mulch over ${areaSqFt.toFixed(0)} sq ft — buy ${bags2} bags (2 cu ft) or ${Math.ceil(cubicYards)} cubic yard(s) in bulk. Add 10% extra for settling.`,
+      rubber:  `Rubber mulch lasts 10+ years. You need ${cubicYards.toFixed(2)} cubic yards. Buying in bulk? 1 ton of rubber mulch ≈ 1.5 cubic yards at 3" depth.`,
+      stone:   `Stone is heavy — ${cubicYards.toFixed(2)} cubic yards of pea gravel weighs about ${(cubicYards * 1.4).toFixed(1)} tons. Confirm delivery weight limits before ordering.`
+    };
+
+    document.getElementById('results-tip').textContent = '💡 ' + tips[currentMaterial];
+    const el = document.getElementById('results');
+    el.classList.remove('show');
+    void el.offsetWidth;
+    el.classList.add('show');
+    el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  document.querySelectorAll('input').forEach(input => {
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') calculate(); });
+  });
+</script>
+
+</body>
+</html>
