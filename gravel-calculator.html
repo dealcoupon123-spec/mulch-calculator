@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gravel Calculator — Cubic Yards & Tons (Free Tool)</title>
+<meta name="description" content="Free gravel calculator. Enter your area and depth to get cubic yards, cubic feet, and tons of gravel needed. Works for pea gravel, river rock, and crushed stone.">
+<meta name="keywords" content="gravel calculator, cubic yards gravel, how much gravel do i need, pea gravel calculator, crushed stone calculator">
+<link rel="canonical" href="https://yardcalctools.com/gravel-calculator">
+<meta name="robots" content="index, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-900: #1a2e1a; --green-800: #243824; --green-700: #2d4a2d;
+    --green-600: #3a5c3a; --green-500: #4a7c4a; --green-400: #6a9e6a;
+    --green-300: #8fbe8f; --green-200: #c2dcc2; --green-100: #e6f2e6;
+    --green-50:  #f4faf4; --cream: #faf8f3; --cream-dark:#f0ece0;
+    --text-dark: #1c2b1c; --text-mid: #4a5e4a; --text-light: #7a927a;
+    --white: #ffffff; --radius-sm: 6px; --radius-md: 12px; --radius-lg: 20px;
+    --shadow-md: 0 4px 20px rgba(26,46,26,.12);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text-dark); line-height: 1.7; font-size: 16px; }
+  nav { background: var(--green-900); padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 56px; position: sticky; top: 0; z-index: 100; }
+  .nav-logo { font-family: 'Fraunces', serif; font-size: 18px; color: var(--green-200); text-decoration: none; letter-spacing: -.3px; }
+  .nav-logo span { color: var(--green-400); }
+  nav ul { list-style: none; display: flex; gap: 28px; }
+  nav ul a { color: var(--green-300); text-decoration: none; font-size: 13px; transition: color .2s; }
+  nav ul a:hover { color: var(--white); }
+  .hero { background: var(--green-900); padding: 56px 24px 72px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(74,124,74,.25) 0%, transparent 70%); pointer-events: none; }
+  .hero-eyebrow { display: inline-block; background: rgba(142,190,142,.15); border: 1px solid rgba(142,190,142,.3); color: var(--green-300); font-size: 12px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; padding: 4px 14px; border-radius: 100px; margin-bottom: 20px; }
+  .hero h1 { font-family: 'Fraunces', serif; font-size: clamp(28px, 5vw, 48px); font-weight: 700; color: var(--white); line-height: 1.15; margin-bottom: 16px; max-width: 700px; margin-left: auto; margin-right: auto; }
+  .hero h1 em { font-style: italic; color: var(--green-300); }
+  .hero-sub { color: var(--green-200); font-size: 17px; font-weight: 300; max-width: 520px; margin: 0 auto 12px; }
+  .hero-badges { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+  .hero-badge { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15); color: var(--green-200); font-size: 12px; padding: 4px 12px; border-radius: 100px; }
+  .calc-wrapper { max-width: 780px; margin: -40px auto 0; padding: 0 20px; position: relative; z-index: 10; }
+  .calc-card { background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); overflow: hidden; }
+  .calc-header { background: var(--green-800); padding: 20px 28px; display: flex; align-items: center; gap: 12px; }
+  .calc-header-icon { width: 40px; height: 40px; background: var(--green-600); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 20px; }
+  .calc-header h2 { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 600; color: var(--white); }
+  .calc-header p { font-size: 12px; color: var(--green-300); margin-top: 2px; }
+  .calc-body { padding: 28px; }
+  .unit-toggle { display: inline-flex; background: var(--green-50); border: 1px solid var(--green-200); border-radius: 100px; padding: 3px; margin-bottom: 24px; }
+  .unit-btn { padding: 6px 18px; border: none; background: transparent; border-radius: 100px; font-size: 13px; font-family: 'DM Sans', sans-serif; color: var(--text-mid); cursor: pointer; transition: all .2s; }
+  .unit-btn.active { background: var(--green-700); color: var(--white); font-weight: 500; }
+  .material-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 20px; }
+  .mat-btn { border: 1.5px solid var(--green-200); border-radius: var(--radius-md); padding: 12px 10px; text-align: center; cursor: pointer; background: var(--cream); transition: all .2s; }
+  .mat-btn.active { border-color: var(--green-600); background: var(--green-50); box-shadow: 0 0 0 3px rgba(74,124,74,.1); }
+  .mat-icon { font-size: 22px; display: block; margin-bottom: 4px; }
+  .mat-name { font-size: 12px; font-weight: 500; color: var(--text-dark); }
+  .mat-desc { font-size: 11px; color: var(--text-light); margin-top: 1px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  @media (max-width: 560px) { .form-grid { grid-template-columns: 1fr; } }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field label { font-size: 13px; font-weight: 500; color: var(--text-mid); }
+  .field-note { font-size: 11px; color: var(--text-light); }
+  .input-wrap { position: relative; }
+  .input-wrap input { width: 100%; padding: 11px 44px 11px 14px; border: 1.5px solid var(--green-200); border-radius: var(--radius-sm); font-size: 15px; font-family: 'DM Sans', sans-serif; color: var(--text-dark); background: var(--cream); outline: none; transition: border-color .2s, box-shadow .2s; }
+  .input-wrap input:focus { border-color: var(--green-500); box-shadow: 0 0 0 3px rgba(74,124,74,.12); background: var(--white); }
+  .input-unit { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 12px; color: var(--text-light); pointer-events: none; }
+  .calc-btn { width: 100%; padding: 14px; background: var(--green-600); color: var(--white); border: none; border-radius: var(--radius-md); font-size: 16px; font-family: 'DM Sans', sans-serif; font-weight: 500; cursor: pointer; transition: background .2s, transform .1s; }
+  .calc-btn:hover { background: var(--green-700); }
+  .calc-btn:active { transform: scale(.99); }
+  .results { margin-top: 20px; background: var(--green-50); border: 1.5px solid var(--green-200); border-radius: var(--radius-md); padding: 20px; display: none; animation: fadeUp .35s ease; }
+  .results.show { display: block; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .results-title { font-size: 13px; font-weight: 500; color: var(--text-mid); margin-bottom: 14px; text-transform: uppercase; letter-spacing: .06em; }
+  .results-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin-bottom: 14px; }
+  .result-box { background: var(--white); border-radius: var(--radius-sm); padding: 14px 12px; text-align: center; border: 1px solid var(--green-200); }
+  .result-box.highlight { background: var(--green-700); border-color: var(--green-700); }
+  .result-val { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 700; color: var(--green-700); line-height: 1; display: block; }
+  .result-box.highlight .result-val { color: var(--white); }
+  .result-lbl { font-size: 11px; color: var(--text-light); margin-top: 5px; display: block; }
+  .result-box.highlight .result-lbl { color: var(--green-200); }
+  .results-tip { font-size: 13px; color: var(--text-mid); background: rgba(74,124,74,.08); border-left: 3px solid var(--green-400); padding: 10px 14px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; line-height: 1.5; }
+  .main-wrap { max-width: 780px; margin: 0 auto; padding: 60px 20px; }
+  .article h2 { font-family: 'Fraunces', serif; font-size: clamp(22px,3.5vw,30px); font-weight: 600; color: var(--green-900); line-height: 1.2; margin: 44px 0 14px; }
+  .article h2:first-child { margin-top: 0; }
+  .article p { color: var(--text-mid); margin-bottom: 16px; font-size: 16px; line-height: 1.8; }
+  .article ul { padding-left: 20px; margin-bottom: 16px; }
+  .article li { color: var(--text-mid); margin-bottom: 8px; font-size: 15px; line-height: 1.7; }
+  .callout { background: var(--green-50); border: 1px solid var(--green-200); border-left: 4px solid var(--green-500); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 16px 20px; margin: 24px 0; }
+  .callout p { color: var(--text-mid); font-size: 14px; margin: 0; }
+  .quick-ref { background: var(--white); border-radius: var(--radius-md); border: 1px solid var(--green-200); overflow: hidden; margin: 48px 0; }
+  .quick-ref-header { background: var(--green-100); padding: 14px 20px; font-size: 14px; font-weight: 500; color: var(--green-800); }
+  .quick-ref table { width: 100%; border-collapse: collapse; }
+  .quick-ref th { background: var(--cream); padding: 10px 16px; font-size: 12px; font-weight: 500; color: var(--text-mid); text-align: left; border-bottom: 1px solid var(--green-100); }
+  .quick-ref td { padding: 10px 16px; font-size: 13px; color: var(--text-dark); border-bottom: 1px solid var(--green-100); }
+  .quick-ref tr:last-child td { border-bottom: none; }
+  .quick-ref tr:nth-child(even) td { background: var(--green-50); }
+  .related { background: var(--green-900); padding: 48px 20px; text-align: center; }
+  .related h2 { font-family: 'Fraunces', serif; font-size: 26px; color: var(--white); margin-bottom: 8px; }
+  .related p { color: var(--green-300); font-size: 14px; margin-bottom: 28px; }
+  .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 12px; max-width: 700px; margin: 0 auto; }
+  .rel-card { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: var(--radius-md); padding: 20px 14px; text-decoration: none; transition: background .2s; }
+  .rel-card:hover { background: rgba(255,255,255,.1); }
+  .rel-icon { font-size: 24px; display: block; margin-bottom: 8px; }
+  .rel-name { font-size: 13px; font-weight: 500; color: var(--white); display: block; }
+  .rel-sub { font-size: 11px; color: var(--green-400); display: block; margin-top: 3px; }
+  footer { background: var(--green-900); border-top: 1px solid rgba(255,255,255,.08); padding: 24px 20px; text-align: center; font-size: 13px; color: var(--green-400); }
+  footer a { color: var(--green-300); text-decoration: none; }
+  footer a:hover { color: var(--white); }
+  .footer-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 12px; }
+  @media (max-width: 600px) { .hero { padding: 40px 16px 64px; } nav ul { display: none; } .calc-body { padding: 20px 16px; } .material-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-logo">Yard<span>CalcTools</span></a>
+  <ul>
+    <li><a href="#calculator">Calculator</a></li>
+    <li><a href="#guide">Guide</a></li>
+  </ul>
+</nav>
+<section class="hero">
+  <div class="hero-eyebrow">Free Online Tool</div>
+  <h1>Gravel Calculator <em>by Yard</em></h1>
+  <p class="hero-sub">Get the exact amount of gravel you need — in cubic yards, cubic feet, and tons. No guessing, no waste.</p>
+  <div class="hero-badges">
+    <span class="hero-badge">✓ Pea gravel, river rock &amp; crushed stone</span>
+    <span class="hero-badge">✓ Tons &amp; cubic yards</span>
+    <span class="hero-badge">✓ Instant results</span>
+  </div>
+</section>
+<div class="calc-wrapper" id="calculator">
+  <div class="calc-card">
+    <div class="calc-header">
+      <div class="calc-header-icon">🪨</div>
+      <div>
+        <h2>Gravel Calculator</h2>
+        <p>Enter your measurements below</p>
+      </div>
+    </div>
+    <div class="calc-body">
+      <div>
+        <div class="unit-toggle" id="unitToggle">
+          <button class="unit-btn active" onclick="setUnit('ft')">Square Feet</button>
+          <button class="unit-btn" onclick="setUnit('yd')">Square Yards</button>
+        </div>
+      </div>
+      <p style="font-size:13px;font-weight:500;color:var(--text-mid);margin-bottom:10px;">Select gravel type:</p>
+      <div class="material-grid">
+        <div class="mat-btn active" id="mat-pea" onclick="setMaterial('pea')">
+          <span class="mat-icon">🟡</span>
+          <span class="mat-name">Pea Gravel</span>
+          <span class="mat-desc">Smooth, decorative</span>
+        </div>
+        <div class="mat-btn" id="mat-crushed" onclick="setMaterial('crushed')">
+          <span class="mat-icon">🪨</span>
+          <span class="mat-name">Crushed Stone</span>
+          <span class="mat-desc">Driveways, base</span>
+        </div>
+        <div class="mat-btn" id="mat-river" onclick="setMaterial('river')">
+          <span class="mat-icon">💧</span>
+          <span class="mat-name">River Rock</span>
+          <span class="mat-desc">Landscaping, drainage</span>
+        </div>
+      </div>
+      <div class="form-grid">
+        <div class="field">
+          <label for="length">Length</label>
+          <div class="input-wrap">
+            <input type="number" id="length" placeholder="e.g. 20" min="0" step="0.1">
+            <span class="input-unit" id="lengthUnit">ft</span>
+          </div>
+          <span class="field-note">Length of your area</span>
+        </div>
+        <div class="field">
+          <label for="width">Width</label>
+          <div class="input-wrap">
+            <input type="number" id="width" placeholder="e.g. 10" min="0" step="0.1">
+            <span class="input-unit" id="widthUnit">ft</span>
+          </div>
+          <span class="field-note">Width of your area</span>
+        </div>
+        <div class="field">
+          <label for="depth">Gravel Depth</label>
+          <div class="input-wrap">
+            <input type="number" id="depth" placeholder="e.g. 3" min="0.5" max="24" step="0.5" value="3">
+            <span class="input-unit">in</span>
+          </div>
+          <span class="field-note">Recommended: 2–4 inches</span>
+        </div>
+        <div class="field">
+          <label for="areas">Number of Areas</label>
+          <div class="input-wrap">
+            <input type="number" id="areas" placeholder="e.g. 1" min="1" step="1" value="1">
+            <span class="input-unit">areas</span>
+          </div>
+          <span class="field-note">Multiple same-size areas</span>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calculate()">Calculate How Much Gravel I Need →</button>
+      <div class="results" id="results">
+        <p class="results-title">Your Results</p>
+        <div class="results-grid">
+          <div class="result-box highlight">
+            <span class="result-val" id="res-yards">—</span>
+            <span class="result-lbl">Cubic Yards</span>
+          </div>
+          <div class="result-box">
+            <span class="result-val" id="res-tons">—</span>
+            <span class="result-lbl">Tons</span>
+          </div>
+          <div class="result-box">
+            <span class="result-val" id="res-feet">—</span>
+            <span class="result-lbl">Cubic Feet</span>
+          </div>
+          <div class="result-box">
+            <span class="result-val" id="res-bags">—</span>
+            <span class="result-lbl">Bags (0.5 cu ft each)</span>
+          </div>
+        </div>
+        <p class="results-tip" id="results-tip">💡 Tip will appear here.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="main-wrap">
+  <div class="quick-ref" style="margin-top:48px;">
+    <div class="quick-ref-header">📊 Quick Reference — Coverage per Cubic Yard</div>
+    <table>
+      <thead><tr><th>Depth</th><th>Coverage per Cubic Yard</th><th>Approx. Weight (tons)</th></tr></thead>
+      <tbody>
+        <tr><td>2 inches</td><td>162 sq ft</td><td>~1.35 tons</td></tr>
+        <tr><td>3 inches</td><td>108 sq ft</td><td>~1.35 tons</td></tr>
+        <tr><td>4 inches</td><td>81 sq ft</td><td>~1.35 tons</td></tr>
+        <tr><td>6 inches</td><td>54 sq ft</td><td>~1.35 tons</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <article class="article" id="guide">
+    <h2>How Much Gravel Do You Need?</h2>
+    <p>Gravel is one of the most versatile landscaping materials — used for driveways, pathways, garden beds, drainage, and decorative areas. Getting the right amount saves money and prevents multiple trips to the supplier.</p>
+    <p>The formula: <strong>Cubic Yards = Length × Width × Depth (in inches) ÷ 324</strong>. Our calculator handles the math instantly and also converts to tons so you can order bulk deliveries accurately.</p>
+    <div class="callout">
+      <p><strong>Rule of thumb:</strong> For pathways and decorative beds, use 2–3 inches of gravel. For driveways, use 4–6 inches of crushed stone base. For drainage, 6+ inches of coarse gravel works best.</p>
+    </div>
+    <h2>Gravel Types Explained</h2>
+    <p><strong>Pea Gravel</strong> — Small, smooth, rounded stones (3/8 inch). Great for walkways, playgrounds, and garden borders. Comfortable underfoot, drains well, and looks attractive.</p>
+    <p><strong>Crushed Stone</strong> — Angular, compacted gravel ideal for driveways and base layers. It locks together when compacted, providing a stable surface. #57 crushed stone is the most common size for driveways.</p>
+    <p><strong>River Rock</strong> — Larger, smooth stones (1–3 inches). Used in dry creek beds, drainage channels, and as decorative ground cover around trees and shrubs.</p>
+    <div class="callout">
+      <p><strong>Pro tip:</strong> Always order 10–15% more than your calculated amount to account for compaction, settling, and uneven areas. Returning extra is easier than making a second order.</p>
+    </div>
+  </article>
+</div>
+<section class="related">
+  <h2>More Free Yard Calculators</h2>
+  <p>All the calculators you need for your yard and garden — free, fast, no sign-up required.</p>
+  <div class="related-grid">
+    <a class="rel-card" href="/mulch-calculator">
+      <span class="rel-icon">🍂</span>
+      <span class="rel-name">Mulch Calculator</span>
+      <span class="rel-sub">Cubic yards &amp; bags</span>
+    </a>
+    <a class="rel-card" href="/fence-calculator">
+      <span class="rel-icon">🏡</span>
+      <span class="rel-name">Fence Calculator</span>
+      <span class="rel-sub">Posts, panels, concrete</span>
+    </a>
+    <a class="rel-card" href="/pool-gallon-calculator">
+      <span class="rel-icon">🏊</span>
+      <span class="rel-name">Pool Gallon Calculator</span>
+      <span class="rel-sub">Volume &amp; chemicals</span>
+    </a>
+    <a class="rel-card" href="/soil-calculator">
+      <span class="rel-icon">🌱</span>
+      <span class="rel-name">Soil Calculator</span>
+      <span class="rel-sub">Raised beds &amp; lawns</span>
+    </a>
+  </div>
+</section>
+<footer>
+  <div class="footer-links">
+    <a href="/about">About</a>
+    <a href="/privacy">Privacy Policy</a>
+    <a href="/contact">Contact</a>
+    <a href="/sitemap.xml">Sitemap</a>
+  </div>
+  <p>© 2025 YardCalcTools.com — Free yard and garden calculators for US homeowners.</p>
+</footer>
+<script>
+  let currentUnit = 'ft', currentMaterial = 'pea';
+  const density = { pea: 1.4, crushed: 1.5, river: 1.35 };
+  function setUnit(u) {
+    currentUnit = u;
+    document.querySelectorAll('.unit-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+    document.getElementById('lengthUnit').textContent = u === 'ft' ? 'ft' : 'yd';
+    document.getElementById('widthUnit').textContent  = u === 'ft' ? 'ft' : 'yd';
+    document.getElementById('results').classList.remove('show');
+  }
+  function setMaterial(m) {
+    currentMaterial = m;
+    document.querySelectorAll('.mat-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('mat-' + m).classList.add('active');
+    document.getElementById('results').classList.remove('show');
+  }
+  function calculate() {
+    const length = parseFloat(document.getElementById('length').value) || 0;
+    const width  = parseFloat(document.getElementById('width').value)  || 0;
+    const depth  = parseFloat(document.getElementById('depth').value)  || 3;
+    const areas  = parseInt(document.getElementById('areas').value)    || 1;
+    if (!length || !width) { alert('Please enter both length and width.'); return; }
+    let areaSqFt = currentUnit === 'ft' ? length * width * areas : length * width * 9 * areas;
+    const cubicFeet  = areaSqFt * (depth / 12);
+    const cubicYards = cubicFeet / 27;
+    const tons       = cubicYards * density[currentMaterial];
+    const bags       = Math.ceil(cubicFeet / 0.5);
+    document.getElementById('res-yards').textContent = cubicYards.toFixed(2);
+    document.getElementById('res-tons').textContent  = tons.toFixed(2);
+    document.getElementById('res-feet').textContent  = cubicFeet.toFixed(1);
+    document.getElementById('res-bags').textContent  = bags;
+    document.getElementById('results-tip').textContent = `💡 For ${depth}" of gravel over ${areaSqFt.toFixed(0)} sq ft — you need ${cubicYards.toFixed(2)} cubic yards (${tons.toFixed(1)} tons). Add 10–15% extra for settling.`;
+    const el = document.getElementById('results');
+    el.classList.remove('show'); void el.offsetWidth; el.classList.add('show');
+    el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+  document.querySelectorAll('input').forEach(i => i.addEventListener('keydown', e => { if (e.key === 'Enter') calculate(); }));
+</script>
+</body>
+</html>

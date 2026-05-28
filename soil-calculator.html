@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soil Calculator — Raised Beds & Lawns (Free Tool)</title>
+<meta name="description" content="Free soil calculator. Enter your raised bed or lawn dimensions to get cubic yards, cubic feet, and bags of soil needed. Works for topsoil, potting mix, and compost.">
+<meta name="keywords" content="soil calculator, raised bed soil calculator, how much soil do i need, topsoil calculator, cubic yards of soil, garden soil calculator">
+<link rel="canonical" href="https://yardcalctools.com/soil-calculator">
+<meta name="robots" content="index, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-900: #1a2e1a; --green-800: #243824; --green-700: #2d4a2d;
+    --green-600: #3a5c3a; --green-500: #4a7c4a; --green-400: #6a9e6a;
+    --green-300: #8fbe8f; --green-200: #c2dcc2; --green-100: #e6f2e6;
+    --green-50:  #f4faf4; --cream: #faf8f3;
+    --text-dark: #1c2b1c; --text-mid: #4a5e4a; --text-light: #7a927a;
+    --white: #ffffff; --radius-sm: 6px; --radius-md: 12px; --radius-lg: 20px;
+    --shadow-md: 0 4px 20px rgba(26,46,26,.12);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text-dark); line-height: 1.7; font-size: 16px; }
+  nav { background: var(--green-900); padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 56px; position: sticky; top: 0; z-index: 100; }
+  .nav-logo { font-family: 'Fraunces', serif; font-size: 18px; color: var(--green-200); text-decoration: none; letter-spacing: -.3px; }
+  .nav-logo span { color: var(--green-400); }
+  nav ul { list-style: none; display: flex; gap: 28px; }
+  nav ul a { color: var(--green-300); text-decoration: none; font-size: 13px; transition: color .2s; }
+  nav ul a:hover { color: var(--white); }
+  .hero { background: var(--green-900); padding: 56px 24px 72px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(74,124,74,.25) 0%, transparent 70%); pointer-events: none; }
+  .hero-eyebrow { display: inline-block; background: rgba(142,190,142,.15); border: 1px solid rgba(142,190,142,.3); color: var(--green-300); font-size: 12px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; padding: 4px 14px; border-radius: 100px; margin-bottom: 20px; }
+  .hero h1 { font-family: 'Fraunces', serif; font-size: clamp(28px, 5vw, 48px); font-weight: 700; color: var(--white); line-height: 1.15; margin-bottom: 16px; max-width: 700px; margin-left: auto; margin-right: auto; }
+  .hero h1 em { font-style: italic; color: var(--green-300); }
+  .hero-sub { color: var(--green-200); font-size: 17px; font-weight: 300; max-width: 520px; margin: 0 auto 12px; }
+  .hero-badges { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+  .hero-badge { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15); color: var(--green-200); font-size: 12px; padding: 4px 12px; border-radius: 100px; }
+  .calc-wrapper { max-width: 780px; margin: -40px auto 0; padding: 0 20px; position: relative; z-index: 10; }
+  .calc-card { background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); overflow: hidden; }
+  .calc-header { background: var(--green-800); padding: 20px 28px; display: flex; align-items: center; gap: 12px; }
+  .calc-header-icon { width: 40px; height: 40px; background: var(--green-600); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 20px; }
+  .calc-header h2 { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 600; color: var(--white); }
+  .calc-header p { font-size: 12px; color: var(--green-300); margin-top: 2px; }
+  .calc-body { padding: 28px; }
+  .material-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 20px; }
+  .mat-btn { border: 1.5px solid var(--green-200); border-radius: var(--radius-md); padding: 12px 10px; text-align: center; cursor: pointer; background: var(--cream); transition: all .2s; }
+  .mat-btn.active { border-color: var(--green-600); background: var(--green-50); box-shadow: 0 0 0 3px rgba(74,124,74,.1); }
+  .mat-icon { font-size: 22px; display: block; margin-bottom: 4px; }
+  .mat-name { font-size: 12px; font-weight: 500; color: var(--text-dark); }
+  .mat-desc { font-size: 11px; color: var(--text-light); margin-top: 1px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  @media (max-width: 560px) { .form-grid { grid-template-columns: 1fr; } }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field label { font-size: 13px; font-weight: 500; color: var(--text-mid); }
+  .field-note { font-size: 11px; color: var(--text-light); }
+  .input-wrap { position: relative; }
+  .input-wrap input { width: 100%; padding: 11px 44px 11px 14px; border: 1.5px solid var(--green-200); border-radius: var(--radius-sm); font-size: 15px; font-family: 'DM Sans', sans-serif; color: var(--text-dark); background: var(--cream); outline: none; transition: border-color .2s; }
+  .input-wrap input:focus { border-color: var(--green-500); box-shadow: 0 0 0 3px rgba(74,124,74,.12); background: var(--white); }
+  .input-unit { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 12px; color: var(--text-light); pointer-events: none; }
+  .calc-btn { width: 100%; padding: 14px; background: var(--green-600); color: var(--white); border: none; border-radius: var(--radius-md); font-size: 16px; font-family: 'DM Sans', sans-serif; font-weight: 500; cursor: pointer; transition: background .2s; }
+  .calc-btn:hover { background: var(--green-700); }
+  .results { margin-top: 20px; background: var(--green-50); border: 1.5px solid var(--green-200); border-radius: var(--radius-md); padding: 20px; display: none; animation: fadeUp .35s ease; }
+  .results.show { display: block; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .results-title { font-size: 13px; font-weight: 500; color: var(--text-mid); margin-bottom: 14px; text-transform: uppercase; letter-spacing: .06em; }
+  .results-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin-bottom: 14px; }
+  .result-box { background: var(--white); border-radius: var(--radius-sm); padding: 14px 12px; text-align: center; border: 1px solid var(--green-200); }
+  .result-box.highlight { background: var(--green-700); border-color: var(--green-700); }
+  .result-val { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 700; color: var(--green-700); line-height: 1; display: block; }
+  .result-box.highlight .result-val { color: var(--white); }
+  .result-lbl { font-size: 11px; color: var(--text-light); margin-top: 5px; display: block; }
+  .result-box.highlight .result-lbl { color: var(--green-200); }
+  .results-tip { font-size: 13px; color: var(--text-mid); background: rgba(74,124,74,.08); border-left: 3px solid var(--green-400); padding: 10px 14px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+  .main-wrap { max-width: 780px; margin: 0 auto; padding: 60px 20px; }
+  .article h2 { font-family: 'Fraunces', serif; font-size: clamp(22px,3.5vw,30px); font-weight: 600; color: var(--green-900); margin: 44px 0 14px; }
+  .article h2:first-child { margin-top: 0; }
+  .article p { color: var(--text-mid); margin-bottom: 16px; font-size: 16px; line-height: 1.8; }
+  .article ul { padding-left: 20px; margin-bottom: 16px; }
+  .article li { color: var(--text-mid); margin-bottom: 8px; font-size: 15px; }
+  .callout { background: var(--green-50); border: 1px solid var(--green-200); border-left: 4px solid var(--green-500); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 16px 20px; margin: 24px 0; }
+  .callout p { color: var(--text-mid); font-size: 14px; margin: 0; }
+  .quick-ref { background: var(--white); border-radius: var(--radius-md); border: 1px solid var(--green-200); overflow: hidden; margin: 48px 0; }
+  .quick-ref-header { background: var(--green-100); padding: 14px 20px; font-size: 14px; font-weight: 500; color: var(--green-800); }
+  .quick-ref table { width: 100%; border-collapse: collapse; }
+  .quick-ref th { background: var(--cream); padding: 10px 16px; font-size: 12px; font-weight: 500; color: var(--text-mid); text-align: left; border-bottom: 1px solid var(--green-100); }
+  .quick-ref td { padding: 10px 16px; font-size: 13px; border-bottom: 1px solid var(--green-100); }
+  .quick-ref tr:last-child td { border-bottom: none; }
+  .quick-ref tr:nth-child(even) td { background: var(--green-50); }
+  .related { background: var(--green-900); padding: 48px 20px; text-align: center; }
+  .related h2 { font-family: 'Fraunces', serif; font-size: 26px; color: var(--white); margin-bottom: 8px; }
+  .related p { color: var(--green-300); font-size: 14px; margin-bottom: 28px; }
+  .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 12px; max-width: 700px; margin: 0 auto; }
+  .rel-card { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: var(--radius-md); padding: 20px 14px; text-decoration: none; transition: background .2s; }
+  .rel-card:hover { background: rgba(255,255,255,.1); }
+  .rel-icon { font-size: 24px; display: block; margin-bottom: 8px; }
+  .rel-name { font-size: 13px; font-weight: 500; color: var(--white); display: block; }
+  .rel-sub { font-size: 11px; color: var(--green-400); display: block; margin-top: 3px; }
+  footer { background: var(--green-900); border-top: 1px solid rgba(255,255,255,.08); padding: 24px 20px; text-align: center; font-size: 13px; color: var(--green-400); }
+  footer a { color: var(--green-300); text-decoration: none; }
+  footer a:hover { color: var(--white); }
+  .footer-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 12px; }
+  @media (max-width: 600px) { .hero { padding: 40px 16px 64px; } nav ul { display: none; } .calc-body { padding: 20px 16px; } .material-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-logo">Yard<span>CalcTools</span></a>
+  <ul><li><a href="#calculator">Calculator</a></li><li><a href="#guide">Guide</a></li></ul>
+</nav>
+<section class="hero">
+  <div class="hero-eyebrow">Free Online Tool</div>
+  <h1>Soil Calculator <em>for Gardens</em></h1>
+  <p class="hero-sub">Find exactly how much soil you need for raised beds, garden beds, and lawns — in cubic yards and bags.</p>
+  <div class="hero-badges">
+    <span class="hero-badge">✓ Raised beds &amp; lawns</span>
+    <span class="hero-badge">✓ Topsoil, potting mix &amp; compost</span>
+    <span class="hero-badge">✓ Instant results</span>
+  </div>
+</section>
+<div class="calc-wrapper" id="calculator">
+  <div class="calc-card">
+    <div class="calc-header">
+      <div class="calc-header-icon">🌱</div>
+      <div><h2>Soil Calculator</h2><p>Enter your measurements below</p></div>
+    </div>
+    <div class="calc-body">
+      <p style="font-size:13px;font-weight:500;color:var(--text-mid);margin-bottom:10px;">Select soil type:</p>
+      <div class="material-grid">
+        <div class="mat-btn active" id="mat-topsoil" onclick="setMaterial('topsoil')">
+          <span class="mat-icon">🌍</span>
+          <span class="mat-name">Topsoil</span>
+          <span class="mat-desc">Lawns, leveling</span>
+        </div>
+        <div class="mat-btn" id="mat-potting" onclick="setMaterial('potting')">
+          <span class="mat-icon">🪴</span>
+          <span class="mat-name">Potting Mix</span>
+          <span class="mat-desc">Raised beds, pots</span>
+        </div>
+        <div class="mat-btn" id="mat-compost" onclick="setMaterial('compost')">
+          <span class="mat-icon">♻️</span>
+          <span class="mat-name">Compost</span>
+          <span class="mat-desc">Amendment, enrichment</span>
+        </div>
+      </div>
+      <div class="form-grid">
+        <div class="field">
+          <label for="length">Length</label>
+          <div class="input-wrap"><input type="number" id="length" placeholder="e.g. 8" min="0" step="0.5"><span class="input-unit">ft</span></div>
+          <span class="field-note">Length of bed or area</span>
+        </div>
+        <div class="field">
+          <label for="width">Width</label>
+          <div class="input-wrap"><input type="number" id="width" placeholder="e.g. 4" min="0" step="0.5"><span class="input-unit">ft</span></div>
+          <span class="field-note">Width of bed or area</span>
+        </div>
+        <div class="field">
+          <label for="depth">Soil Depth</label>
+          <div class="input-wrap"><input type="number" id="depth" placeholder="e.g. 12" min="1" max="48" step="1" value="12"><span class="input-unit">in</span></div>
+          <span class="field-note">Raised bed: 10–12 in</span>
+        </div>
+        <div class="field">
+          <label for="beds">Number of Beds</label>
+          <div class="input-wrap"><input type="number" id="beds" placeholder="1" min="1" step="1" value="1"><span class="input-unit">beds</span></div>
+          <span class="field-note">Multiple same-size beds</span>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calculate()">Calculate How Much Soil I Need →</button>
+      <div class="results" id="results">
+        <p class="results-title">Your Results</p>
+        <div class="results-grid">
+          <div class="result-box highlight">
+            <span class="result-val" id="res-yards">—</span>
+            <span class="result-lbl">Cubic Yards</span>
+          </div>
+          <div class="result-box">
+            <span class="result-val" id="res-feet">—</span>
+            <span class="result-lbl">Cubic Feet</span>
+          </div>
+          <div class="result-box">
+            <span class="result-val" id="res-bags1">—</span>
+            <span class="result-lbl">Bags (1 cu ft each)</span>
+          </div>
+          <div class="result-box">
+            <span class="result-val" id="res-bags2">—</span>
+            <span class="result-lbl">Bags (2 cu ft each)</span>
+          </div>
+        </div>
+        <p class="results-tip" id="results-tip">💡 Tip will appear here.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="main-wrap">
+  <div class="quick-ref" style="margin-top:48px;">
+    <div class="quick-ref-header">📊 Quick Reference — Common Raised Bed Sizes</div>
+    <table>
+      <thead><tr><th>Bed Size</th><th>Depth</th><th>Cubic Feet Needed</th></tr></thead>
+      <tbody>
+        <tr><td>4 × 4 ft</td><td>12 inches</td><td>16 cu ft (~10 bags)</td></tr>
+        <tr><td>4 × 8 ft</td><td>12 inches</td><td>32 cu ft (~16 bags)</td></tr>
+        <tr><td>4 × 12 ft</td><td>12 inches</td><td>48 cu ft (~24 bags)</td></tr>
+        <tr><td>4 × 8 ft</td><td>18 inches</td><td>48 cu ft (~24 bags)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <article class="article" id="guide">
+    <h2>How Much Soil Do You Need?</h2>
+    <p>The formula is simple: <strong>Cubic Feet = Length × Width × (Depth in inches ÷ 12)</strong>. Then divide by 27 to get cubic yards. Our calculator also tells you how many bags to buy — whether you're picking up 1 cu ft or 2 cu ft bags from the store.</p>
+    <div class="callout">
+      <p><strong>Best raised bed mix:</strong> A great all-purpose raised bed soil is 60% topsoil, 30% compost, and 10% potting mix (or perlite for drainage). This gives roots plenty of nutrients, good drainage, and moisture retention.</p>
+    </div>
+    <h2>Soil Types Explained</h2>
+    <p><strong>Topsoil</strong> is the top 2–8 inches of native soil. It's dense and heavy, great for filling large areas or leveling lawns. Not ideal alone for raised beds because it can compact and drain poorly.</p>
+    <p><strong>Potting Mix</strong> is lightweight and formulated for containers and raised beds. It drains well, holds moisture, and is usually sterile (no weed seeds). More expensive per cubic foot than topsoil.</p>
+    <p><strong>Compost</strong> is decomposed organic matter — the best natural fertilizer. Adding 2–4 inches of compost annually improves any soil. It adds nutrients, improves drainage in clay soils, and helps sandy soils retain moisture.</p>
+    <ul>
+      <li><strong>Lawn top-dressing:</strong> Apply 1/4 to 1/2 inch of compost across your lawn in fall or spring.</li>
+      <li><strong>New raised beds:</strong> Fill completely with potting mix or a topsoil/compost blend to 10–12 inches deep.</li>
+      <li><strong>Existing beds:</strong> Add 2–3 inches of compost each season to replenish nutrients.</li>
+    </ul>
+    <div class="callout">
+      <p><strong>Pro tip:</strong> Soil settles 10–15% after watering. Add 10–15% more than your calculated amount so the bed stays full after the first few waterings.</p>
+    </div>
+  </article>
+</div>
+<section class="related">
+  <h2>More Free Yard Calculators</h2>
+  <p>All the calculators you need for your yard and garden — free, fast, no sign-up required.</p>
+  <div class="related-grid">
+    <a class="rel-card" href="/mulch-calculator"><span class="rel-icon">🍂</span><span class="rel-name">Mulch Calculator</span><span class="rel-sub">Cubic yards &amp; bags</span></a>
+    <a class="rel-card" href="/gravel-calculator"><span class="rel-icon">🪨</span><span class="rel-name">Gravel Calculator</span><span class="rel-sub">Cubic yards &amp; tons</span></a>
+    <a class="rel-card" href="/fence-calculator"><span class="rel-icon">🏡</span><span class="rel-name">Fence Calculator</span><span class="rel-sub">Posts, panels, concrete</span></a>
+    <a class="rel-card" href="/pool-gallon-calculator"><span class="rel-icon">🏊</span><span class="rel-name">Pool Gallon Calculator</span><span class="rel-sub">Volume &amp; chemicals</span></a>
+  </div>
+</section>
+<footer>
+  <div class="footer-links">
+    <a href="/about">About</a><a href="/privacy">Privacy Policy</a><a href="/contact">Contact</a><a href="/sitemap.xml">Sitemap</a>
+  </div>
+  <p>© 2025 YardCalcTools.com — Free yard and garden calculators for US homeowners.</p>
+</footer>
+<script>
+  let currentMaterial = 'topsoil';
+  function setMaterial(m) {
+    currentMaterial = m;
+    document.querySelectorAll('.mat-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('mat-' + m).classList.add('active');
+    document.getElementById('results').classList.remove('show');
+  }
+  function calculate() {
+    const length = parseFloat(document.getElementById('length').value) || 0;
+    const width  = parseFloat(document.getElementById('width').value)  || 0;
+    const depth  = parseFloat(document.getElementById('depth').value)  || 12;
+    const beds   = parseInt(document.getElementById('beds').value)     || 1;
+    if (!length || !width) { alert('Please enter both length and width.'); return; }
+    const cubicFeet  = length * width * (depth / 12) * beds;
+    const cubicYards = cubicFeet / 27;
+    const bags1      = Math.ceil(cubicFeet);
+    const bags2      = Math.ceil(cubicFeet / 2);
+    document.getElementById('res-yards').textContent = cubicYards.toFixed(2);
+    document.getElementById('res-feet').textContent  = cubicFeet.toFixed(1);
+    document.getElementById('res-bags1').textContent = bags1;
+    document.getElementById('res-bags2').textContent = bags2;
+    const tips = {
+      topsoil:  `For ${depth}" of topsoil over ${(length * width * beds).toFixed(0)} sq ft — buy ${bags2} bags (2 cu ft) or ${cubicYards.toFixed(1)} cubic yard(s) bulk. Add 10% for settling.`,
+      potting:  `Potting mix is sold in 1–2 cu ft bags. You need ${cubicFeet.toFixed(1)} cu ft total — that's ${bags2} bags of 2 cu ft each. Potting mix is great for raised beds.`,
+      compost:  `You need ${cubicFeet.toFixed(1)} cu ft of compost. Mix with topsoil for best results: 60% topsoil + 30% compost + 10% potting mix for ideal raised bed soil.`
+    };
+    document.getElementById('results-tip').textContent = '💡 ' + tips[currentMaterial];
+    const el = document.getElementById('results');
+    el.classList.remove('show'); void el.offsetWidth; el.classList.add('show');
+    el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+  document.querySelectorAll('input').forEach(i => i.addEventListener('keydown', e => { if (e.key === 'Enter') calculate(); }));
+</script>
+</body>
+</html>
